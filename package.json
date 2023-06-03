@@ -1,0 +1,11 @@
+{
+  "name": "nybillparser",
+  "version": "1.0.0",
+  "description": "monorepo for NYBillParser to keep up with current proposed legislation from NY State Senate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tasha Hutnick",
+  "license": "ISC"
+}
