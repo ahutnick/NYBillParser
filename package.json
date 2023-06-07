@@ -2,9 +2,18 @@
   "name": "nybillparser",
   "version": "1.0.0",
   "description": "monorepo for NYBillParser to keep up with current proposed legislation from NY State Senate",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahutnick/NYBillParser/"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm -prefix front-end run build",
+    "start": "npx concurrently 'npm run start:backend' 'npm run start:frontend'",
+    "start:backend": "npm --prefix ./back-end start",
+    "start:frontend": "npm --prefix ./front-end start",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:backend": "npm test --prefix ./back-end",
+    "test:frontend": "npm test --prefix ./front-end"
   },
   "author": "Tasha Hutnick",
   "license": "ISC"
