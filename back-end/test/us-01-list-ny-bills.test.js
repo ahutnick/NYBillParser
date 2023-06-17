@@ -1,6 +1,5 @@
-const request = require("supertest");
-
-const app = require("../src/app");
+import supertest from "supertest";
+import app from "../src/app";
 
 // Move to Own file
 
@@ -8,7 +7,7 @@ describe("US-01 List NY Bills", () => {
     describe("App", () => {
         describe("not found handler", () => {
             test("returns 404 for non-existent route", async () => {
-                const response = await request(app)
+                const response = await supertest(app)
                     .get("/recipes")
                     .set("Accept", "application/json");
 
@@ -23,7 +22,7 @@ describe("US-01 List NY Bills", () => {
 
     describe("GET /bills", () => {
         test("returns only bills from this year", async () => {
-            const response = await request(app)
+            const response = await supertest(app)
                 .get("/bills")
                 .set("Accept", "application/json");
             
