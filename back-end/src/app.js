@@ -1,15 +1,21 @@
-const path = require("path");
+import path from "path"
 
-require('dotenv').config();
+import express from "express";
 
-const errorHandler = require("./errors/errorHandler");
-const notFound = require("./errors/notFound");
+import dotenv from "dotenv";
 
-const express = require("express");
+import errorHandler from "./errors/errorHandler";
+import notFound from "./errors/notFound";
+
+import billsRouter from "./bills/bills.router";
+
+dotenv.config();
 
 const app = express();
+
+app.use("/bills", billsRouter);
 
 app.use(notFound);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;
