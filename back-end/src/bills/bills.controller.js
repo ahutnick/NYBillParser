@@ -3,7 +3,7 @@ import asyncErrorBoundary from "../errors/asyncErrorBoundary"
 
 async function list(req, res) {
     const data = await services.list();
-    res.json(data);
+    res.json({data});
 }
 
 export default {
