@@ -1,6 +1,8 @@
 import supertest from "supertest";
 import app from "../src/app";
 
+// Note - switch to mocks for GET /bills test
+
 // Move to Own file
 
 describe("US-01 List NY Bills", () => {
@@ -36,6 +38,17 @@ describe("US-01 List NY Bills", () => {
 
             data.forEach(element => {
                 expect(element).toHaveProperty('year', year);
+            });
+            expect(status).toBe(200);
+        });
+
+        // Only Pulls Bills that haven't been adopted
+
+        test("returns only bills that are not adopted", async () => {
+            const { status, body: { data } } = await getBills();
+
+            data.forEach(element => {
+                expect(element).toHaveProperty('adopted', false);
             });
             expect(status).toBe(200);
         });
