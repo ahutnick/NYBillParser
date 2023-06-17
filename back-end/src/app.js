@@ -1,5 +1,7 @@
 const path = require("path");
 
+require('dotenv').config();
+
 const errorHandler = require("./errors/errorHandler");
 const notFound = require("./errors/notFound");
 
