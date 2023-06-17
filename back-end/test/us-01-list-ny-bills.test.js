@@ -17,18 +17,22 @@ describe("US-01 List NY Bills", () => {
         });
     });
 
-    // Pulls bills from this year X
-    // Pulls bills that aren't signed
+    // Pulls bills from this year 
 
     describe("GET /bills", () => {
-        test("returns only bills from this year", async () => {
+        async function getBills() {
             const response = await supertest(app)
                 .get("/bills")
                 .set("Accept", "application/json");
-            
-            const year = new Date().getFullYear();
 
-            const { status, body: { data } } = response;
+            return response;
+        }
+
+        test("returns only bills from this year", async () => {
+
+            const { status, body: { data } } = await getBills();
+
+            const year = new Date().getFullYear();
 
             data.forEach(element => {
                 expect(element).toHaveProperty('year', year);
