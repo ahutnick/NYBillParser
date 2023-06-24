@@ -1,7 +1,7 @@
-import supertest from "supertest";
-import app from "../src/app";
-
-// Note - switch to mocks for GET /bills test
+const supertest =  require("supertest");
+const {list} = require("../src/bills/bills.services");
+const app = require("../src/app");
+const axios = require("axios");
 
 // Move to Own file
 
@@ -22,34 +22,29 @@ describe("US-01 List NY Bills", () => {
     // Pulls bills from this year 
 
     describe("GET /bills", () => {
-        async function getBills() {
-            const response = await supertest(app)
-                .get("/bills")
-                .set("Accept", "application/json");
+        afterEach(() => {
+            jest.clearAllMocks()
+        })
 
-            return response;
-        }
-
-        test("returns only bills from this year", async () => {
-
-            const { status, body: { data } } = await getBills();
+        test("calls with proper url, including only bills from this year", async () => {
+            jest.spyOn(axios, "get");
 
             const year = new Date().getFullYear();
+            const bills = { result: { items: [{result: { year: year, adopted: false }}  ] } }
 
-            data.forEach(element => {
-                expect(element).toHaveProperty('year', year);
-            });
-            expect(status).toBe(200);
+            axios.get.mockImplementation(() => Promise.resolve(bills));
+
+            const data = await list();
+
+            expect(axios.get).toHaveBeenCalledWith(`https://legislation.nysenate.gov/api/3/bills/${year}/search?term=adopted:false&view=info&key=${process.env.API_KEY}`, expect.any(Object));
         });
 
         // Only Pulls Bills that haven't been adopted
 
-        test("returns only bills that are not adopted", async () => {
-            const { status, body: { data } } = await getBills();
-
-            data.forEach(element => {
-                expect(element).toHaveProperty('adopted', false);
-            });
+        test("status returns 200", async () => {
+            const { status } = await supertest(app)
+                .get("/bills")
+                .set("Accept", "application/json");
             expect(status).toBe(200);
         });
     })
