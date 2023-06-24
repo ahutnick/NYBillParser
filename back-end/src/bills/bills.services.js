@@ -1,13 +1,12 @@
-import got from "got";
+const axios = require("axios");
 
 async function list() {
     const year = new Date().getFullYear();
-    const url = `https://legislation.nysenate.gov/api/3/bills/${year}/search?term=adopted:false&view=info&key=${process.env.API_KEY}`
-    const options = {timeout: { request: 15000 } };
-    const response = await got(url, options).json();
+    const url = `https://legislation.nysenate.gov/api/3/bills/${year}/search?term=adopted:false&view=info&key=${process.env.API_KEY}`;
+    const response = await axios.get(url, {timeout: 15000});
     return response.result.items.map(item => item.result);
 }
 
-export default {
+module.exports = {
     list,
 }

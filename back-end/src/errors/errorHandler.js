@@ -3,4 +3,4 @@ function errorHandler(error, request, response, next) {
     response.status(status).json({ error: message });
 }
 
-export default errorHandler;
+module.exports = errorHandler;

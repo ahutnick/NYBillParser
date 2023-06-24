@@ -4,6 +4,7 @@ function asyncErrorBoundary(delegate, defaultStatus) {
             .then(() => delegate(request, response, next))
             .catch((error = {}) => {
                 const { status = defaultStatus, message = error } = error;
+                console.log(message);
                 next({
                     status,
                     message,
@@ -12,4 +13,4 @@ function asyncErrorBoundary(delegate, defaultStatus) {
     };
 }
 
-export default asyncErrorBoundary;
+module.exports = asyncErrorBoundary;
