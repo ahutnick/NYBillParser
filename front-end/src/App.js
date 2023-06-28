@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./layout/Header";
-import Layout from "./layout/Layout";
+import Home from "./home/Home";
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
         <Header />
         <Routes>
-          <Route path ="/" element={<Layout />} />
+          <Route path ="/" element={<Home />} />
         </Routes>
     </BrowserRouter>
   );
