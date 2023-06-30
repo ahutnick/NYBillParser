@@ -32,8 +32,8 @@ function Dashboard() {
 
     
 
-    return (<div>
-            <h1>Hello</h1>
+    return (
+        <div className="mt-5">
             <BillAccordion bills={bills}/>
             <ErrorAlert error={billsErrors}/>
         </div>);
