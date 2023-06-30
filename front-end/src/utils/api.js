@@ -5,7 +5,7 @@ const API_BASE_URL =
 
 export async function listBills(signal) {
     const url = new URL(`${API_BASE_URL}/bills`);
-    const bills = await axios.get(url, {signal, timeout: 15000})
-    return bills;
+    const bills = await axios.get(url, {signal});
+    return bills.data.data
 }
 
