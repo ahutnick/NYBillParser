@@ -14,9 +14,6 @@ function Bill({bill, index}) {
                     <div className="d-flex justify-content-between">
                         <div className="col-3">{bill.billType.resolution ? "Resolution " : "Bill "}{bill.printNo}</div>
                         <div className="col-7">{shortenTitle(bill.title)}</div>
-                        <div className="col-2">
-                            <a href={`https://legislation.nysenate.gov/pdf/bills/${bill.year}/${bill.printNo}`}>PDF</a>
-                        </div>
                     </div>
                     </div>
                 </button>
@@ -25,6 +22,9 @@ function Bill({bill, index}) {
                 <div className="accordion-body">
                     {bill.summary ? bill.summary : bill.title}
                     <ul className="list-group mt-3">
+                        <li className="list-group-item">
+                            <a href={`https://legislation.nysenate.gov/pdf/bills/${bill.year}/${bill.printNo}`}>PDF</a>
+                        </li>
                         <li className="list-group-item">
                             Sponsor: {bill.sponsor.member.fullName}, District {bill.sponsor.member.districtCode}
                         </li>
