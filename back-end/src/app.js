@@ -12,7 +12,7 @@ const notFound = require("./errors/notFound");
 const billsRouter = require("./bills/bills.router");
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://ny-bill-parser-2546a1cdfe0e.herokuapp.com/https://ny-bill-parser-2546a1cdfe0e.herokuapp.com"],
+    origins: ["http://localhost:3000", "https://ny-bill-parser-2546a1cdfe0e.herokuapp.com/https://ny-bill-parser-2546a1cdfe0e.herokuapp.com"],
     optionsSuccessStatus: 200
 }
 
