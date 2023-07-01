@@ -33,7 +33,7 @@ function Dashboard() {
     
 
     return (
-        <div className="mt-5">
+        <div className="mt-5 mb-5 h-100">
             <BillAccordion bills={bills}/>
             <ErrorAlert error={billsErrors}/>
         </div>);
